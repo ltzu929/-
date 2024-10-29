@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<!-- 声明文档类型为 HTML5 -->
+<html lang="zh">
+<!-- 设置文档的语言为中文 -->
+<head>
+    <meta charset="UTF-8"> <!-- 指定文档字符集为 UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 设置视口，确保在移动设备上良好显示 -->
+    <link rel="stylesheet" href="styles.css"> <!-- 引用外部 CSS 文件，负责页面样式 -->
+    <title>ACGN 页面</title> <!-- 页面标题，显示在浏览器标签上 -->
+</head>
+<body>
+    <!-- 音乐文件 -->
+    <audio id="background-music" src="素材/君に会えた日 - 伊藤美来、鬼頭明里.mp3" loop preload="auto"></audio>
+    <section id="home">
+        <div class="background" id="home" color="e6cfe6">
+            <!-- 背景容器，设置颜色为 e6cfe6 -->
+            <div class="overlay">
+                <!-- 覆盖层，用于显示文字 -->
+                <div class="theme">
+                    <!-- 主题文字容器 -->
+                    你去了祭典吧？和我不认识的女生一起。 <!-- 显示的文本内容 -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="wordtitleup">安达</div> <!-- 上方标题 -->
+    <div class="wordtitlemiddle">与</div> <!-- 中间标题 -->
+    <div class="wordtitledown">岛村</div> <!-- 下方标题 -->
+
+    <div style="background-color: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; width: 60%; margin: 0 auto;">
+        <img src="素材/brief.jpg" alt="描述文字" class="img-brief" id="place"> <!-- 简介部分的图片 -->
+        <div>
+            <p style="text-align: center; font-size: 50px;">简介</p> <!-- 简介标题 -->
+            <p style="font-size: 20px; line-height: 2;">
+                《安达与岛村》是一部由入间人间创作的轻小说，最初于2013年开始连载，并逐渐改编为漫画和动画。作品的主要内容围绕两位女高中生安达和岛村的友谊，展现了她们在青春岁月中的成长与探索。
+                作品以轻松幽默的对话和细腻的情感描写著称。它不仅展现了青春期女孩们的日常生活，还深入探讨了友谊、成长、爱情等主题。通过两位主角的视角，读者能感受到青春的迷茫与美好。
+                总的来说，这部作品以其可爱的角色和真实的情感描写，吸引了大量观众和读者，成为了现代青春题材作品中的一颗明珠。
+            </p>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 100px auto 0; font-size: 29px;">名场面——岛村之刃</div> <!-- 名场面标题 -->
+
+    <div id="feast">
+        <img src="素材/feast1.jpg" alt="左侧图片"> <!-- 左侧图片 -->
+        <img src="素材/feast2.jpg" alt="右侧图片"> <!-- 右侧图片 -->
+    </div>
+
+    <div class="sidebar left">
+        <img src="素材/02.jpg" alt="左侧栏图片1"> <!-- 左侧栏的图片 -->
+        <div style="text-align: center; margin: 0 auto;font-size: 20px;">安达</div> <!-- 左侧栏的标题 -->
+        性格内向、沉默寡言的少女，她不擅长与人交往，总是逃学，喜欢独自待着。 <!-- 左侧栏的描述 -->
+    </div>
+
+    <div class="sidebar right">
+        <img src="素材/01.jpg" alt="右侧栏图片1"> <!-- 右侧栏的图片 -->
+        <div style="text-align: center; margin: 0 auto;font-size: 20px;">岛村</div> <!-- 右侧栏的标题 -->
+        性格外向，善于与人打交道，也有较强的社交能力。然而，她对人际关系有一种漫不经心的态度，似乎不愿太过深入。 <!-- 右侧栏的描述 -->
+    </div>
+
+    <section id="information">
+        <p style="text-align: center; font-size: 30px;">图片欣赏</p>
+        <div class="carousel">
+            <!-- 图片轮播容器 -->
+            <img src="素材/003.jpg" class="active" alt="图片1"> <!-- 第一张轮播图片 -->
+            <img src="素材/004.jpg" alt="图片2"> <!-- 第二张轮播图片 -->
+            <img src="素材/005.jpg" alt="图片3"> <!-- 第三张轮播图片 -->
+            <img src="素材/002.jpg" alt="图片4"> <!-- 第四张轮播图片 -->
+            <a class="prev">&#10094;</a> <!-- 上一张按钮 -->
+            <a class="next">&#10095;</a> <!-- 下一张按钮 -->
+        </div>
+
+        <div class="dots-container">
+            <!-- 指示点容器 -->
+            <span class="dot active" data-index="0"></span> <!-- 第一张图片的指示点 -->
+            <span class="dot" data-index="1"></span> <!-- 第二张图片的指示点 -->
+            <span class="dot" data-index="2"></span> <!-- 第三张图片的指示点 -->
+            <span class="dot" data-index="3"></span> <!-- 第四张图片的指示点 -->
+        </div>
+    </section>
+
+    <script>
+
+        // 等待网页加载完成后播放音乐
+        window.onload = function () {
+            var audio = document.getElementById('background-music');
+            audio.play(); // 播放音乐
+        };
+
+        const feastImages = document.querySelectorAll('#feast img'); // 获取名场面中的所有图片
+        const sidebars = document.querySelectorAll('.sidebar'); // 获取所有侧栏
+
+        feastImages.forEach(image => { // 为每张名场面图片添加鼠标事件监听
+            image.addEventListener('mouseenter', () => { // 当鼠标进入图片时
+                sidebars.forEach(sidebar => { // 隐藏所有侧栏
+                    sidebar.classList.add('hidden');
+                });
+            });
+
+            image.addEventListener('mouseleave', () => { // 当鼠标离开图片时
+                sidebars.forEach(sidebar => { // 显示所有侧栏
+                    sidebar.classList.remove('hidden');
+                });
+            });
+        });
+
+        const imgBrief = document.querySelector('.img-brief'); // 获取简介部分的图片
+
+        const observer = new IntersectionObserver((entries, observer) => { // 创建观察者实例
+            entries.forEach(entry => { // 遍历每个被观察的元素
+                if (entry.isIntersecting) { // 如果元素进入视口
+                    entry.target.classList.add('visible'); // 添加可见类
+                    observer.unobserve(entry.target); // 停止观察该元素
+                }
+            });
+        }, {
+            threshold: 0.1 // 当图片的 10% 出现在视口时触发
+        });
+
+        observer.observe(imgBrief); // 开始观察简介图片
+
+        const images = document.querySelectorAll('.carousel img'); // 获取所有轮播图片
+        const dots = document.querySelectorAll('.dot'); // 获取所有指示点
+        const prevButton = document.querySelector('.prev'); // 获取“上一张”按钮
+        const nextButton = document.querySelector('.next'); // 获取“下一张”按钮
+        let currentIndex = 0; // 当前显示的图片索引
+        let timer; // 自动切换的定时器
+
+        function showImage(index) { // 显示指定索引的图片
+            images.forEach((img, i) => { // 遍历所有轮播图片
+                img.classList.toggle('active', i === index); // 切换图片的显示状态
+                dots[i].classList.toggle('active', i === index); // 切换指示点的活动状态
+            });
+            currentIndex = index; // 更新当前索引
+        }
+
+        function showNextImage() { // 显示下一张图片
+            let nextIndex = (currentIndex + 1) % images.length; // 计算下一张图片的索引
+            showImage(nextIndex); // 显示下一张图片
+        }
+
+        function showPrevImage() { // 显示上一张图片
+            let prevIndex = (currentIndex - 1 + images.length) % images.length; // 计算上一张图片的索引
+            showImage(prevIndex); // 显示上一张图片
+        }
+
+        function startAutoSlide() { // 开始自动切换图片
+            timer = setInterval(showNextImage, 3000); // 每3秒切换一次
+        }
+
+        function stopAutoSlide() { // 停止自动切换图片
+            clearInterval(timer); // 清除定时器
+        }
+
+        nextButton.addEventListener('click', () => { // 为“下一张”按钮添加点击事件监听器
+            showNextImage(); // 显示下一张图片
+            stopAutoSlide(); // 停止当前的自动切换
+            startAutoSlide(); // 重新开始自动切换
+        });
+
+        prevButton.addEventListener('click', () => { // 为“上一张”按钮添加点击事件监听器
+            showPrevImage(); // 显示上一张图片
+            stopAutoSlide(); // 停止当前的自动切换
+            startAutoSlide(); // 重新开始自动切换
+        });
+
+        dots.forEach(dot => { // 为每个指示点添加点击事件监听器
+            dot.addEventListener('click', () => { // 当指示点被点击时
+                let index = parseInt(dot.getAttribute('data-index')); // 获取指示点对应的索引
+                showImage(index); // 显示对应的图片
+                stopAutoSlide(); // 停止当前的自动切换
+                startAutoSlide(); // 重新开始自动切换
+            });
+        });
+
+        startAutoSlide(); // 启动自动切换图片
+
+        window.addEventListener('scroll', function () { // 为窗口添加滚动事件监听
+            var imageContainers = document.querySelectorAll('.image-container'); // 获取所有图片容器
+            var windowHeight = window.innerHeight; // 获取窗口高度
+
+            imageContainers.forEach(function (container) { // 遍历每个图片容器
+                var rect = container.getBoundingClientRect(); // 获取容器的位置
+
+                if (rect.top < windowHeight && rect.bottom >= 0) { // 如果容器进入视口
+                    container.classList.add('show'); // 添加显示类
+
+                    var images = container.querySelectorAll('.slide-image'); // 获取容器中的所有图片
+
+                    images.forEach(function (image, index) { // 遍历每张图片
+                        if (index % 2 === 0) { // 如果是偶数索引
+                            image.classList.add('move-left'); // 添加左移动类
+                        } else { // 如果是奇数索引
+                            image.classList.add('move-right'); // 添加右移动类
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
